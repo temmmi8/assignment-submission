@@ -204,18 +204,129 @@ console.log(isOnlyNumbers("45a6")); // false
 console.log(isOnlyNumbers("")); // false
 console.log(isOnlyNumbers("012345")); // true
 
-let age = 30;
-const yearOfBirth = 1987;
+//21. Write code that finds the second smallest number in an array
+function findSecondSmallest(list) {
+  if (list.length < 2) {
+    console.log("Array must have at least 2 numbers.");
+  }
+  let smallest = Infinity;
+  let secondSmallest = Infinity;
+  for (let i = 0; i < list.length; i++) {
+    let current = list[i];
+    if (current < smallest) {
+      secondSmallest = smallest;
+      smallest = current;
+    } else if (current > smallest && current < secondSmallest) {
+      secondSmallest = current;
+    }
+  }
+  if (secondSmallest === Infinity) {
+    return "No second smallest (all numbers might be the same)";
+  }
+  return secondSmallest;
+}
+let scores = [8, 3, 5, 1, 9];
+let secondLowest = findSecondSmallest(scores);
+console.log("Second smallest number is:", secondLowest);
 
-console.log(firstName);
-console.log(age);
-console.log(yearOfBirth);
-console.log(typeof yearOfBirth);
+//22. Create a program that displays the multiplication table for a given number.
+let base = 4;
+console.log("Multiplication Table for", base);
+for (let i = 1; i <= 10; i++) {
+  let result = base * i;
+  console.log(base + " x " + i + " = " + result);
+}
 
-let course = {
-  title: "HHLD",
-  desciption: "projects",
-  ratings: 6,
-};
-console.log(course[3]);
-console.log(typeof course);
+//23. Write a function that validates if a password meets specific criteria (at least 8 characters, one uppercase, one lowercase, one number).
+function isValidPassword(password) {
+  if (password.length < 8) {
+    console.log("Password must be at least 8 characters long.");
+  }
+  let hasUppercase = false;
+  let hasLowercase = false;
+  let hasNumber = false;
+
+  for (let i = 0; i < password.length; i++) {
+    let char = password[i];
+
+    if (char >= "A" && char <= "Z") {
+      hasUppercase = true;
+    } else if (char >= "a" && char <= "z") {
+      hasLowercase = true;
+    } else if (char >= "0" && char <= "9") {
+      hasNumber = true;
+    }
+  }
+  if (!hasUppercase) {
+    console.log("Password must contain at least one uppercase letter.");
+    return false;
+  }
+  if (!hasLowercase) {
+    console.log("Password must contain at least one lowercase letter.");
+    return false;
+  }
+  if (!hasNumber) {
+    console.log("Password must contain at least one number.");
+    return false;
+  }
+  console.log("Password is valid!");
+  return true;
+}
+
+//24. Create code that simulates a simple calculator with basic operations.
+function calculate(num1, num2, operator) {
+  let result;
+
+  if (operator === "+") {
+    result = num1 + num2;
+  } else if (operator === "-") {
+    result = num1 - num2;
+  } else if (operator === "*") {
+    result = num1 * num2;
+  } else if (operator === "/") {
+    if (num2 === 0) {
+      console.log("Cannot divide by zero.");
+      return;
+    }
+    result = num1 / num2;
+  } else {
+    console.log("Invalid operator. Use +, -, *, or /");
+    return;
+  }
+  console.log("Result:", result);
+}
+calculate(10, 5, "+");
+calculate(10, 5, "-");
+calculate(10, 5, "*");
+calculate(10, 5, "/");
+
+//25. Write a program that finds all factors of a given number.
+let value = 12;
+console.log("Factors of", value, "are:");
+for (let i = 1; i <= value; i++) {
+  if (value % i === 0) {
+    console.log(i);
+  }
+}
+
+//26. Create a function that checks if two strings are anagrams.
+//27. Write a program that generates the Fibonacci sequence up to n terms.
+//28. Create code that sorts an array of numbers without using the built-in sort method.
+
+//29. Write a function that counts how many times a specific element appears in an array.
+function countOccurrences(arr, target) {
+  let count = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      count++;
+    }
+  }
+  return count;
+}
+let eso = ["apple", "banana", "apple", "orange", "apple"];
+let e = countOccurrences(eso, "apple");
+
+console.log("apple appears", e, "times.");
+
+//30. Create a shopping cart program where users can add items, remove items, and calculate the total price.
